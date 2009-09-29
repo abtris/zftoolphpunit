@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+phpunit --configuration phpunit.xml $1 $2 $3

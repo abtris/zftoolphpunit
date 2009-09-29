@@ -1,0 +1,26 @@
+#!/usr/local/zend/bin/php
+<?php
+# make tests init
+# 1. create tests/phpunit.xml
+# 2. create tests/Alltests
+# 3. create application/bootstrap.php
+# 4. create application/controllers/ControllerTestCase.php
+// Dirs
+exec('mkdir -p tests/application/controllers');
+// Files
+$phpunit = file_get_contents(dirname(__FILE__).'/phpunit.xml');
+
+if (isset($argv[1])) {
+  str_replace('@@PROJECT@@', $argv[1], $phpunit);	
+}
+
+file_put_contents('tests/phpunit.xml', $phpunit);
+// 2. create tests/Alltests
+$alltests = file_get_contents(dirname(__FILE__).'/AllTests');
+file_put_contents('tests/Alltests', $alltests);
+// 3. create application/bootstrap.php
+$bootstrap = file_get_contents(dirname(__FILE__).'/bootstrap.php');
+file_put_contents('tests/application/bootstrap.php', $bootstrap);
+// 4. create application/controllers/ControllerTestCase.php
+$ctc = file_get_contents(dirname(__FILE__).'/ControllerTestCase.php');
+file_put_contents('tests/application/controllers/ControllerTestCase.php', $ctc);
